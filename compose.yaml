@@ -1,0 +1,9 @@
+include:
+  - loki/compose.yaml
+  - prometheus/compose.yaml
+  - grafana/compose.yaml
+  - alloy/compose.yaml
+
+networks:
+  monitoring:
+    name: monitoring

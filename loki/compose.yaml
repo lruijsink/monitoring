@@ -1,0 +1,11 @@
+services:
+  loki:
+    image: grafana/loki:3.7.0
+    command: -config.file=/etc/loki/loki-config.yaml
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3100:3100"
+    volumes:
+      - ./loki-config.yaml:/etc/loki/loki-config.yaml:ro
+      - ./data:/loki
+    networks: [monitoring]

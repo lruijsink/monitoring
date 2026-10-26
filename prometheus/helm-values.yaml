@@ -1,0 +1,30 @@
+# kube-prometheus-stack, Prometheus only: Grafana runs in Docker Compose
+grafana:
+  enabled: false
+
+alertmanager:
+  enabled: false
+
+# Docker Desktop can't share the node's root mount, and the host is the VM anyway
+nodeExporter:
+  enabled: false
+
+# Kind binds these to localhost, so their targets would always be down
+kubeEtcd:
+  enabled: false
+kubeScheduler:
+  enabled: false
+kubeControllerManager:
+  enabled: false
+kubeProxy:
+  enabled: false
+
+prometheus:
+  service:
+    type: NodePort
+    nodePort: 30090 # Grafana expects it on host port 30090, see grafana/README.md
+  prometheusSpec:
+    # Select every ServiceMonitor/PodMonitor, not just those labelled with the release name
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    retention: 15d

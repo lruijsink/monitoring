@@ -1,0 +1,16 @@
+services:
+  prometheus:
+    image: prom/prometheus:v3.13.2
+    command:
+      - --config.file=/etc/prometheus/prometheus.yaml
+      - --storage.tsdb.path=/prometheus
+    restart: unless-stopped
+    # Needs root to read the Docker socket (root:root 660 in Docker Desktop)
+    user: root
+    ports:
+      - "127.0.0.1:9090:9090"
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./data:/prometheus
+    networks: [monitoring]

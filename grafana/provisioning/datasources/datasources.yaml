@@ -1,0 +1,13 @@
+apiVersion: 1
+
+datasources:
+  - name: Prometheus (Compose)
+    type: prometheus
+    url: http://prometheus:9090
+    isDefault: true
+  - name: Prometheus (k8s)
+    type: prometheus
+    url: http://host.docker.internal:30090
+  - name: Loki
+    type: loki
+    url: http://loki:3100
