@@ -45,23 +45,16 @@ curl http://localhost:3100/loki/api/v1/query_range \
           "level": "error",
           "msg": "timeout"
         },
-        "values": [["1793055208303212427", "level=error msg=timeout"]]
-      },
-      {
-        "stream": {
-          "project": "my-app",
-          "service": "api",
-          "level": "error",
-          "msg": "refused"
-        },
-        "values": [["1793055154838722888", "level=error msg=refused"]]
+        "values": [
+          ["1793055208303212427", "level=error msg=timeout"],
+          ["1793055154838722888", "level=error msg=timeout"]
+        ]
       }
     ]
   }
 }
 ```
 
-- `stream`: labels of the log stream, `logfmt` adds every parsed field (`level`,
-  `msg`) as a label
-- `values`: `[unix-nanosecond-timestamp, "log line"]`, newest first, one stream
-  per distinct label set
+- `result`: array, one stream per label set
+- `stream`: label set extracted from the log stream
+- `values`: `[unix-timestamp, "log line"]`, newest first
