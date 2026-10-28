@@ -1,6 +1,7 @@
 services:
   prometheus:
-    image: prom/prometheus:v3.13.2
+    image: prom/prometheus:latest
+    pull_policy: always
     command:
       - --config.file=/etc/prometheus/prometheus.yaml
       - --storage.tsdb.path=/prometheus

@@ -9,7 +9,6 @@ releases:
     namespace: monitoring
     createNamespace: true
     chart: prometheus-community/kube-prometheus-stack
-    version: 92.11.0
     # The chart's CRDs don't exist on a fresh cluster, so validating its
     # ServiceMonitors during the first diff would fail
     disableValidationOnInstall: true
@@ -20,6 +19,5 @@ releases:
     namespace: monitoring
     createNamespace: true
     chart: grafana/alloy
-    version: 1.14.2
     values:
       - alloy/helm-values.yaml
