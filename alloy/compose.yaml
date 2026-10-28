@@ -1,6 +1,7 @@
 services:
   alloy:
-    image: grafana/alloy:v1.20.1
+    image: grafana/alloy:latest
+    pull_policy: always
     command: run --server.http.listen-addr=0.0.0.0:12345 --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy
     restart: unless-stopped
     volumes:

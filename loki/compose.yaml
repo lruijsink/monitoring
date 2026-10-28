@@ -1,6 +1,7 @@
 services:
   loki:
-    image: grafana/loki:3.7.0
+    image: grafana/loki:latest
+    pull_policy: always
     command: -config.file=/etc/loki/loki-config.yaml
     restart: unless-stopped
     ports:

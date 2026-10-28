@@ -28,7 +28,7 @@ modification may be required for different setups.
   - [Prometheus](prometheus/README.md): via `kube-prometheus-stack` on port
     `30090`
 
-## Installation
+## Install or update
 
 From this directory, run:
 
@@ -37,7 +37,10 @@ docker compose up -d
 helmfile apply
 ```
 
-**Next step:** follow the [setup instructions](SETUP.md) to wire up a project.
+**Next steps:** Follow the [setup instructions](SETUP.md) to wire up a project.
+
+_Note:_ `helmfile apply` updates charts but not CRDs. Recreate the cluster to
+refresh them.
 
 ## Omissions
 
