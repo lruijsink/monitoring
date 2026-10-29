@@ -5,6 +5,12 @@ services:
     restart: unless-stopped
     ports:
       - "127.0.0.1:3000:3000"
+    environment:
+      # Don't spawn backend processes for bundled datasources we don't provision
+      GF_PLUGINS_DISABLE_PLUGINS: >-
+        cloudwatch,elasticsearch,grafana-postgresql-datasource,
+        grafana-pyroscope-datasource,influxdb,jaeger,mssql,mysql,opentsdb,
+        stackdriver,tempo,zipkin
     volumes:
       - ./data:/var/lib/grafana
       - ./provisioning:/etc/grafana/provisioning:ro
